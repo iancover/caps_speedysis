@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>speedysis</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width"> 
+
+		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+
+	<body>
+
+		<header>
+			<h1>speedysis</h1>
+			<p class="description">website speed performance analysis</p>
+
+			<form class="js-searchform">
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="searchbox" for="searchbox">your domain</label><br>
+				<span class="searchbox">www. <input type="text" class="searchbox js-searchbox" placeholder=" mywebsite"> .com  </span>
+				<button type="submit" class="search-button js-search-button">Analyze</button>
+			</form>
+		</header>
+
+<!-- **** RESULTS CONTAINER BEGINS **** -->
+		<div class="results-container">
+
+	<!-- *** RESULTS SECTION *** -->
+
+			<section class="analysis-section">
+				<h2 class="results-header">Analysis Results</h2>
+					
+					<!-- PREV/NEXT BUTTONS
+
+					<div class="js-qa-nav-buttons">
+						<a class="js-qa-prev" href="">&#171; Previous</a><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<a class="js-qa-next" href="">Next &#187;</a> 
+					</div>
+					<br>
+					-->
+				<div class="js-qa-results">
+
+				</div>
+			</section>
+
+		</div> 
+<!-- **** RESULTS CONTAINER ENDS **** -->
+		
+
+		<footer>
+			<p>Speedysis sources third party content, for more information please visit: <a id="googl-link" href="http://www.googleapis.com">Google API</p>
+		</footer>
+
+		<!-- jQuery CDN information for CORS: prevents cross-origin leaks and makes request smaller -->
+		<script
+		  src="https://code.jquery.com/jquery-3.2.1.js"
+		  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		  crossorigin="anonymous">
+		</script>
+
+		<script type="text/javascript" src="app.js"></script>
+	</body>
+
+</html>
