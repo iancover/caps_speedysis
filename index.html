@@ -15,14 +15,15 @@
 			<p class="description">website speed performance analysis</p>
 
 			<form class="js-searchform">
-				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><label class="searchbox" for="searchbox">your domain</label><br>
+				<label class="searchbox" for="searchbox">Enter Domain Name</label><br>
 				<span class="searchbox">www. <input type="text" class="searchbox js-url-input" placeholder=" mywebsite" required> .com  </span>
-				<button type="submit" class="search-button js-search-button">Analyze</button>
+				<button type="submit" class="search-button js-search-button">Get Stats</button><br>
+				<p class="js-error-msg" hidden></p>
 			</form>
 		</header>
 
 <!-- **** RESULTS CONTAINER BEGINS **** -->
-		<div class="results-container">
+		<div id="js-results-container" class="results-container">
 
 	<!-- *** RESULTS SECTION *** -->
 

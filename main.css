@@ -6,7 +6,7 @@ body {
 /*    outline: 1px solid red;
 */}
 
-     /* *** SEARCH AREA *** */
+     /**** SEARCH AREA ****/
 
 header {
 	display: inline-block;
@@ -31,6 +31,10 @@ h1 {
 	color: #434444;
 }
 
+label {
+	margin-left: 61px;
+}
+
 .searchbox {
 	width: 200px;
 	color: #434444;
@@ -44,12 +48,19 @@ h1 {
 	width: 75px;
 }
 
-/* RESULTS AREA */
+.js-error-msg {
+	color: red;
+}
+
+	/*** RESULTS AREA ***/
+
+#js-results-container {
+    display: flex;    
+    flex-grow: 0;
+}
 
 .results-container {
-    flex-grow: 0;
-    display: flex;
-    visibility: hidden;
+	visibility: hidden;
 }
 
 .analysis-section {
@@ -64,6 +75,8 @@ h1 {
     overflow-y: auto;
 }
 
+
+	/**** BOTTOM ****/
 
 footer {
 	position: absolute;
