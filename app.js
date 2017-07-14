@@ -1,165 +1,164 @@
 
 
 
-var GOOGLE_API_URL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?callback=?';
-// note: 'callback=?' tells your requestin JSONP
+var GOOGLE_API_URL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?';
+// for JSONP --> 'callback=?'
 
 var CHART_API_URL = 'http://chart.apis.google.com/chart?';
-var API_KEY: 'AIzaSyD01Sfue8NJalRTGWxfP5UpjpqBoCW2LG4';
 
-var HTML_TEMPLATE = {
-	// need to finish html template
-};
+var API_KEY = 'AIzaSyD01Sfue8NJalRTGWxfP5UpjpqBoCW2LG4';
 
 
-getApiData(searchURL, callback) {
-  var query = {
-    url: searchURL,
-    key: API_KEY,
-    prettyprint: true,
-  };
+var HTML_SCORE_CHART_TEMP = (
+	'<div class="js-score-temp">' +
+		'<img class="js-score-chart" src="">' +			
+	'</div>'	
+);
 
-	console.log('getApiData running');
-	console.log(query);
 
-	$getJSON(GOOGLE_API_URL, query, displayApiData);
+
+
+function runPageSpeed(targetURL) {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  var query = [
+    'url=' + targetURL,
+    'callback=runPagespeedCallbacks',
+    'key=' + API_KEY,
+  ].join('&');
+  s.src = GOOGLE_API_URL + query;
+
+  console.log('runPagespeed running');
+  console.log(query);
+  document.head.insertBefore(s, null);
 }
 
-renderResults(results) {
-	var template = $(HTML_TEMPLATE);
-	// find each element and insert values
-	return template;
+function runPagespeedCallbacks(result) { 
+	console.log('runPagespeed running');
 }
 
-displayApiData(data) {
-	var results = data.items.map(function(item, index) {
-		return renderResults;
-	});
-	$('.js-results').html(results);
-}
 
 function watchSubmit() {
 	$('.js-searchform').submit(function(event) {
 		event.preventDefault();
-		var valueURL = $(event).find('').val();
-		var targetURL = valueURL.val();
-		valueURL.val("");
+
+		var inputURL = $(document).find('.js-url-input');
+		var targetURL = 'http://www.' + inputURL.val() + '.com';
+		inputURL.val("");
+
 		$('.results-container').show();
 
-		console.log('watchSubmit');
-		getApiData(targetURL, displayApiData);
+		console.log('watchSubmit running');
+
+		runPageSpeed(targetURL);
 	});
 }
 
+
 $(watchSubmit);
 
-var callbacks = {}
+
+// *** PREVIOUS SCRIPT
+
+// function getDataApi(searchURL, callback) {
+// 	var query = {
+// 	  	url: searchURL,
+// 	  	key: API_KEY,
+// 	  	callback: callback
+// 	};
+
+// 	console.log('getDataApi running');
+// 	$.getJSON(GOOGLE_API_URL, query);
+// }
+
+// function renderResults(results) {
+//   	var score = results.score;
+//   	var query = [
+// 	    'chtt=Page+Speed+score:+' + score,
+// 	    'chs=180x100',
+// 	    'cht=gom',
+// 	    'chd=t:' + score,
+// 	    'chxt=x,y',
+// 	    'chxl=0:|' + score,
+// 	  ].join('&');
+
+//   	var imgSRC = CHART_API_URL + query;
+
+// 	var template = $(HTML_SCORE_CHART_TEMP);
+// 	template.find('.js-score-chart').attr('src', imgSRC)
+
+// 	console.log('renderResults running');
+// 	return template;
+// }
+
+// function displayApiData(data) {
+// 	var results = data.map(function(item, index) {
+// 		return renderResults;
+// 	});
+
+// 	console.log('displayApiData running');
+// 	$('.js-results').html(results);
+// }
 
 
 
-// Our JSONP callback. Checks for errors, then invokes our callback handlers.
-function runPagespeedCallbacks(result) {
-  if (result.error) {
-    var errors = result.error.errors;
-    for (var i = 0, len = errors.length; i < len; ++i) {
-      if (errors[i].reason == 'badRequest' && API_KEY == 'yourAPIKey') {
-        alert('Please specify your Google API key in the API_KEY variable.');
-      } else {
-        // NOTE: your real production app should use a better
-        // mechanism than alert() to communicate the error to the user.
-        alert(errors[i].message);
-      }
-    }
-    return;
-  }
 
-  // Dispatch to each function on the callbacks object.
-  for (var fn in callbacks) {
-    var f = callbacks[fn];
-    if (typeof f == 'function') {
-      callbacks[fn](result);
-    }
-  }
-}
 
-// Invoke the callback that fetches results. Async here so we're sure
-// to discover any callbacks registered below, but this can be
-// synchronous in your code.
-setTimeout(runPagespeed, 0);
-//  PageSpeed Insights:
-// 		overview: https://developers.google.com/speed/docs/insights/about
-//		info returned:
-//				score - 0-100 'speed' and 'usability'
-//				rule - 
+// *** SUGGESTIONS ****
 
-// parameters: 
-//			prettyprint: true - returns reponse in human readable format
-//			url: string - use to fetch and analyze
-//			strategy: string (acceptable values: 'desktop' or 'mobile')
-//			locale: 'en';
 
-// paths: 
-// 		for speed and usability scores:
-//					data.usability.score & data.speed.score
-//		
-//
+// var HTML_SUGGESTIONS_TEMP = (
+// 	'<div class="js-suggestions-temp">' +
+// 		'<ul class="js-pgspeed-suggestions">' +
+// 		'</ul>' +
+// 	'</div>'
+// );
 
-//	API INFO:
-//  	endpoint: https://www.googleapis.com/pagespeedonline/v1/
-//		
-// 		
+// function displayTopPageSpeedSuggestions(result) {
+//   var listTemplate = $(HTML_SUGGESTIONS_TEMP);
+//   var resultList = listTemplate.find('.js-pgspeed-suggestions').val();
 
-// Display PageSpeed as Google-O-Meter
-
-// callbacks.displayPageSpeedScore = function(result) {
-//   var score = result.score;
-//   // Construct the query to send to the Google Chart Tools.
-//   var query = [
-//     'chtt=Page+Speed+score:+' + score,
-//     'chs=180x100',
-//     'cht=gom',
-//     'chd=t:' + score,
-//     'chxt=x,y',
-//     'chxl=0:|' + score,
-//   ].join('&');
-//   var i = document.createElement('img');
-//   i.src = CHART_API_URL + query;
-//   document.body.insertBefore(i, null);
-// };
-
-// // Display Top Page Speed Suggestions:
-
-// callbacks.displayTopPageSpeedSuggestions = function(result) {
 //   var results = [];
 //   var ruleResults = result.formattedResults.ruleResults;
-//   for (var i in ruleResults) {
-//     var ruleResult = ruleResults[i];
-//     // Don't display lower-impact suggestions.
-//     if (ruleResult.ruleImpact < 3.0) continue;
-//     results.push({name: ruleResult.localizedRuleName,
-//                   impact: ruleResult.ruleImpact});
+// 	  for (var i in ruleResults) {
+// 	    var ruleResult = ruleResults[i];
+// 	    if (ruleResult.ruleImpact < 3.0) continue;
+// 	    results.push({name: ruleResult.localizedRuleName,
+// 	                  impact: ruleResult.ruleImpact});
+// 	  }
+// 	  results.sort(function(a,b) {
+// 	  	return b.impact - a.impact;
+// 	  });
+
+//   var resultList = listTemplate.();
+
+//   for (var i = 0; i < results.length; ++i) {
+//   	var resultItem = '<li>' + results[i].name '</li>';
+//  	resultList.append(resultItem);
 //   }
-//   results.sort(sortByImpact);
-//   var ul = document.createElement('ul');
-//   for (var i = 0, len = results.length; i < len; ++i) {
-//     var r = document.createElement('li');
-//     r.innerHTML = results[i].name;
-//     ul.insertBefore(r, null);
-//   }
-//   if (ul.hasChildNodes()) {
-//     document.body.insertBefore(ul, null);
+
+//   if (resultList.hasChildNodes()) {
+
 //   } else {
-//     var div = document.createElement('div');
-//     div.innerHTML = 'No high impact suggestions. Good job!';
-//     document.body.insertBefore(div, null);
+//     var noHighImpact = '<div>No high impact suggestions. Good job!</div>' +
+//     $('.js-suggestions-temp').html(noHighImpact);
 //   }
+
 // };
 
-// // Helper function that sorts results in order of impact.
-// function sortByImpact(a, b) { return b.impact - a.impact; }
 
 
-// // Display resource size breakdown pie chart
+
+
+// *** RESOURCE BREAKDOWN CHART ****
+
+
+// var HTML_BREAKDOWN_CHART_TEMP = (
+// 	'<div class="js-breakdown-temp">' +
+// 		'<img class="js-breakdown-chart" src="">' +
+// 	'</div>'
+// 	);
 
 // var RESOURCE_TYPE_INFO = [
 //   {label: 'JavaScript', field: 'javascriptResponseBytes', color: 'e2192c'},
@@ -171,7 +170,7 @@ setTimeout(runPagespeed, 0);
 //   {label: 'Other', field: 'otherResponseBytes', color: '1051e8'},
 // ];
 
-// callbacks.displayResourceSizeBreakdown = function(result) {
+// function displayResourceSizeBreakdown(result) {
 //   var stats = result.pageStats;
 //   var labels = [];
 //   var data = [];
@@ -191,7 +190,7 @@ setTimeout(runPagespeed, 0);
 //       colors.push(color);
 //     }
 //   }
-//   // Construct the query to send to the Google Chart Tools.
+
 //   var query = [
 //     'chs=300x140',
 //     'cht=p3',
@@ -207,14 +206,6 @@ setTimeout(runPagespeed, 0);
 //   i.src = 'http://chart.apis.google.com/chart?' + query;
 //   document.body.insertBefore(i, null);
 // };
-
-
-
-
-
-
-
-
 
 
 
