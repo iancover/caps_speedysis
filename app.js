@@ -14,8 +14,8 @@ var HTML_SCORE_CHART_TEMP = (
 
 var HTML_SUGGESTIONS_TEMP = (
 	'<div class="js-suggestions-temp">' +
-		'<ul class="js-pgspeed-suggestions" hidden>' +
-		'</ul>' +
+		'<dl class="js-pgspeed-suggestions">' +
+		'</dl>' +
 	'</div>'
 );
 
@@ -29,10 +29,60 @@ function getDataApi(searchURL, callback) {
 	$.getJSON(GOOGLE_API_URL, query, callback);
 }
 
-function renderResults(results) {
-	var charTemp = $(HTML_SCORE_CHART_TEMP);
-	var listTemplate = $(HTML_SUGGESTIONS_TEMP);
+function renderSuggestions(results) {
+  	console.log('renderSuggestions running')
+	var suggestResults = [];
+	var ruleResults = results.formattedResults.ruleResults;
 
+	for (var i in ruleResults) {
+		var eachResult = ruleResults[i];
+		console.log(eachResult);
+		if (eachResult.ruleImpact < 3.0) continue;
+			if (eachResult ) { // if eachResult contains summary, then push this....????
+				suggestResults.push({
+					name: eachResult.localizedRuleName,
+					impact: eachResult.ruleImpact,
+					summary: eachResult.summary.format
+				});	
+			} else {
+				suggestResults.push({
+					name: eachResult.localizedRuleName,
+					impact: eachResult.ruleImpact,
+				});	
+			}
+	} 
+	
+	console.log(suggestResults);
+	suggestResults.sort(function(a,b) {
+	  	return b.impact - a.impact;
+	});
+
+	var listTemplate = $(HTML_SUGGESTIONS_TEMP);
+	var resultList = listTemplate.find('.js-pgspeed-suggestions');
+
+	for (var i = 0; i < suggestResults.length; ++i) {
+		var impactScoreLong = suggestResults[i].impact;
+		var impactScoreFixed = impactScoreLong.toFixed(2); // limits score 2 decimals
+		var resultListItem = (
+			'<dt>' + suggestResults[i].name + '</dt><br>' +
+			'<dd><span class="js-impact-score">' + impactScoreFixed + '</span></dd><br>' +
+			'<dd>' + suggestResults[i].summary.format + '</dd><br>'
+			);
+
+		resultList.append(resultListItem);
+	}
+ 	if (resultList[0].hasChildNodes()) {
+ 		resultList.show();
+  	} else {
+    	$('.js-suggestions-temp').html('No high impact suggestions. Good job!');
+  	}
+  	console.log(listTemplate);
+  	return listTemplate;
+}
+
+function renderChart(results) {
+	console.log('renderChart is running')
+	var charTemp = $(HTML_SCORE_CHART_TEMP);
   	var speedScore = results.ruleGroups.SPEED.score;
   	var chartQuery = [
 	    'chtt=Page+Speed+score:+' + speedScore,
@@ -44,68 +94,40 @@ function renderResults(results) {
 	  ].join('&');
 
   	var imgSRC = CHART_API_URL + chartQuery;
-	
-	var resultList = listTemplate.find('.js-pgspeed-suggestions');
-
-	var suggestResults = [];
-	var ruleResults = suggestResults.formattedResults.ruleResults;
-
-	for (var i in ruleResults) {
-		var ruleResult = ruleResults[i];
-		if (ruleResult.ruleImpact < 3.0) continue;
-			suggestResults.push({
-				name: ruleResult.localizedRuleName,
-				impact: ruleResult.ruleImpact,
-				summary: ruleResult.summary.format
-				});
-	} 
-	console.log('Suggestions Rendering')
-	console.log(suggestResults);
-
-	suggestResults.sort(function(a,b) {
-	  	return b.impact - a.impact;
-	});
-	
-	for (var i = 0; i < results.length; ++i) {
-		var resultListItem = '<li>' + suggestResults[i].name + '</li>'; // need to add impact + summary
-		resultList.append(resultItem);
-	}
- 	if (resultList.hasChildNodes()) {
- 		resultList.show();
-  	} else {
-    	$('.js-suggestions-temp').html('No high impact suggestions. Good job!');
-  	}
-
-  	console.log('renderResults running');
-
   	charTemp.find('.js-score-chart').attr('src', imgSRC);
-	$('.js-results').html(charTemp);
+
+  	console.log(charTemp);
+  	return charTemp;
 
 // *** ALTERNATIVE TO PREVIOUS LOOP ***
-	// var impactScore = ruleResult.ruleImpact > 3.0;
-	// var ruleResultDetails = {
-	// 		name: ruleResult.localizedRuleName,
-	// 		impact: ruleResult.ruleImpact,
-	// 		summary: ruleResult.summary.format
+	// var impactScore = eachResult.ruleImpact > 3.0;
+	// var eachResultDetails = {
+	// 		name: eachResult.localizedRuleName,
+	// 		impact: eachResult.ruleImpact,
+	// 		summary: eachResult.summary.format
 	// }
 
 	// results.filter() {
 	// 	for (impactScore in results) {
-	// 		return ruleResultDetails;
+	// 		return eachResultDetails;
 	// 	}
 	// };
 }
 
 function displayApiData(data) {
+	console.log('displayApiData running');
 	if (data.error) {
     	var errorDisplay = data.error.errors.message;
     	$('form').find('.js-error-msg').show().val(errorDisplay);
     } else {
-		var results = data.map(function(item, index) {	
-			console.log('displayApiData running');
-			return renderResults(results);
-		});
+		var charTemp = renderChart(data);
+		var listTemplate = renderSuggestions(data);
+
+		$('.js-results').html(charTemp);
+    	$('.js-results').append(listTemplate);
     }
+
+
 }
 
 function formSubmit() {
