@@ -38,19 +38,28 @@ function renderSuggestions(results) {
 		var eachResult = ruleResults[i];
 		console.log(eachResult);
 		if (eachResult.ruleImpact < 3.0) continue;
-			if (eachResult ) { // if eachResult contains summary, then push this....????
-				suggestResults.push({
-					name: eachResult.localizedRuleName,
-					impact: eachResult.ruleImpact,
-					summary: eachResult.summary.format
-				});	
-			} else {
+			// if (eachResult.summary) { 
+			// 	suggestResults.push({
+			// 		name: eachResult.localizedRuleName,
+			// 		impact: eachResult.ruleImpact,
+			// 		summary: parseSummary(eachResult.summary)
+			// 	});	
+			// } else {
 				suggestResults.push({
 					name: eachResult.localizedRuleName,
 					impact: eachResult.ruleImpact,
 				});	
 			}
-	} 
+	// } 
+
+ 
+	// function parseSummary(summary, results) {
+	// 	var numScripts = results.pageStats.numberJsResources;
+	// 	var numCss = esults.pageStats.numberCssResources;
+	// 	return summary
+	// 	.replace('{{NUM_SCRIPTS}}', numScripts)
+	// 	.replace('{{NUM_CSS}}', numCSs)
+	// }
 	
 	console.log(suggestResults);
 	suggestResults.sort(function(a,b) {
@@ -63,10 +72,12 @@ function renderSuggestions(results) {
 	for (var i = 0; i < suggestResults.length; ++i) {
 		var impactScoreLong = suggestResults[i].impact;
 		var impactScoreFixed = impactScoreLong.toFixed(2); // limits score 2 decimals
+		console.log(suggestResults[i]);
+		// var summary = ((suggestResults[i].summary && suggestResults[i].summary.format) ? '<dd>' + suggestResults[i].summary.format + '</dd><br>' : '');
 		var resultListItem = (
 			'<dt>' + suggestResults[i].name + '</dt><br>' +
-			'<dd><span class="js-impact-score">' + impactScoreFixed + '</span></dd><br>' +
-			'<dd>' + suggestResults[i].summary.format + '</dd><br>'
+			'<dd>Impact Score: <span class="js-impact-score">' + impactScoreFixed + '</span></dd><br>' 
+			// + summary
 			);
 
 		resultList.append(resultListItem);
@@ -116,6 +127,7 @@ function renderChart(results) {
 
 function displayApiData(data) {
 	console.log('displayApiData running');
+	console.log(data);
 	if (data.error) {
     	var errorDisplay = data.error.errors.message;
     	$('form').find('.js-error-msg').show().val(errorDisplay);
