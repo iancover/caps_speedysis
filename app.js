@@ -1,5 +1,6 @@
 
 
+
 var GOOGLE_API_URL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?callback=?';
 
 var API_KEY = 'AIzaSyD01Sfue8NJalRTGWxfP5UpjpqBoCW2LG4';
@@ -18,6 +19,8 @@ var HTML_SUGGESTIONS_TEMP = (
 		'</dl>' +
 	'</div>'
 );
+
+
 
 function getDataApi(searchURL, callback) {
 	var query = {
@@ -109,25 +112,19 @@ function renderChart(results) {
 
   	console.log(charTemp);
   	return charTemp;
-
-// *** ALTERNATIVE TO PREVIOUS LOOP ***
-	// var impactScore = eachResult.ruleImpact > 3.0;
-	// var eachResultDetails = {
-	// 		name: eachResult.localizedRuleName,
-	// 		impact: eachResult.ruleImpact,
-	// 		summary: eachResult.summary.format
-	// }
-
-	// results.filter() {
-	// 	for (impactScore in results) {
-	// 		return eachResultDetails;
-	// 	}
-	// };
 }
 
 function displayApiData(data) {
 	console.log('displayApiData running');
 	console.log(data);
+
+	$(document).ready(function() {
+	$('#fountainTextG').hide();
+	console.log('loader hide/show working');
+
+	$('#js-results-container').removeAttr('hidden');
+ 	console.log('results container displaying');
+});
 	if (data.error) {
     	var errorDisplay = data.error.errors.message;
     	$('form').find('.js-error-msg').show().val(errorDisplay);
@@ -138,15 +135,13 @@ function displayApiData(data) {
 		$('.js-results').html(charTemp);
     	$('.js-results').append(listTemplate);
     }
-
-
 }
 
 function formSubmit() {
 	$('.js-searchform').submit(function(event) {
 		event.preventDefault();
-		$('#js-results-container').removeAttr('class');
 
+		$('#fountainTextG').show();
 		var inputURL = $(document).find('.js-url-input');
 		var targetURL = 'http://www.' + inputURL.val() + '.com';
 		inputURL.val("");
@@ -155,6 +150,8 @@ function formSubmit() {
 		getDataApi(targetURL, displayApiData);
 	});
 }
+
+
 
 $(formSubmit);
 
@@ -166,62 +163,6 @@ $(formSubmit);
 
 
 
-// var GOOGLE_API_URL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?';
-// // for JSONP --> 'callback=?'
-
-// var CHART_API_URL = 'http://chart.apis.google.com/chart?';
-
-// var API_KEY = 'AIzaSyD01Sfue8NJalRTGWxfP5UpjpqBoCW2LG4';
-
-
-// var HTML_SCORE_CHART_TEMP = (
-// 	'<div class="js-score-temp">' +
-// 		'<img class="js-score-chart" src="">' +			
-// 	'</div>'	
-// );
-
-
-
-
-// function runPageSpeed(targetURL) {
-//   var s = document.createElement('script');
-//   s.type = 'text/javascript';
-//   s.async = true;
-//   var query = [
-//     'url=' + targetURL,
-//     'callback=runPagespeedCallbacks',
-//     'key=' + API_KEY,
-//   ].join('&');
-//   s.src = GOOGLE_API_URL + query;
-
-//   console.log('runPagespeed running');
-//   console.log(query);
-//   document.head.insertBefore(s, null);
-// }
-
-// function runPagespeedCallbacks(result) { 
-// 	console.log('runPagespeed running');
-// }
-
-
-// function watchSubmit() {
-// 	$('.js-searchform').submit(function(event) {
-// 		event.preventDefault();
-
-// 		var inputURL = $(document).find('.js-url-input');
-// 		var targetURL = 'http://www.' + inputURL.val() + '.com';
-// 		inputURL.val("");
-
-// 		$('#js-results-container').removeAttr('class');
-
-// 		console.log('watchSubmit running');
-
-// 		runPageSpeed(targetURL);
-// 	});
-// }
-
-
-// $(watchSubmit);
 
 
 
@@ -253,4 +194,13 @@ $(formSubmit);
 
 
 
-// 
+
+
+
+
+
+
+
+
+
+ 
