@@ -56,6 +56,7 @@ function renderSuggestions(results) {
 	// } 
 
  
+
 	// function parseSummary(summary, results) {
 	// 	var numScripts = results.pageStats.numberJsResources;
 	// 	var numCss = esults.pageStats.numberCssResources;

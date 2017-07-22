@@ -8,30 +8,37 @@
 		<link rel="stylesheet" type="text/css" href="main.css">
 		<link rel="stylesheet" type="text/css" href="loader.css">
 		<link rel="stylesheet" type="text/css" href="responsive.css">
+		<link rel="stylesheet" type="text/css" href="temp-main.css">
+		<link rel="stylesheet" href="template.css">
 	</head>
 
 	<body>
 
-		<header>
-			<h1 class="">speedysis</h1>
-			<p class="description">website speed performance analysis</p>
-
-			<form class="cta-form">
-			<input type="text" id="address-input" class="form-control cta-form__input" placeholder="Enter ZIP Code or Address" autocomplete="off">
-			<button class="btn-primary green cta-form__btn" type="submit"><span class="hidden-md">Submit</span><span class="visible-md-inline">Get Started</span></button></form>
-
-			<form class="js-searchform">
-				<label class="searchbox" for="searchbox">Enter Domain Name</label><br>
-				<span class="searchbox">www. <input type="text" class="searchbox js-url-input" placeholder=" mywebsite" required> .com  </span>
-				<button type="submit" class="search-button js-search-button">Get Stats</button><br>
-				<p class="js-error-msg" hidden></p>
-			</form>
+		<header id="header" class="alt">
+			<div class="logo"><a href="index.html">speedysis <span> by Ian Cover</span></a></div>
 		</header>
+		
+		<section id="banner" data-video="images/banner"> <!-- NOTE: add- images/banner -->
+			<div class="inner">
+				<h1>speedysis</h1>
+				<p>Analyze website content and get suggestions provided by <a href="https://developers.google.com/speed/pagespeed/">Google APIs</a> to improve performance.</p>
+
+				<form class="js-searchform" method="post" action="#">
+					<div class="row uniform"> <!-- FOUND UNDER GRID -->
+						<div class=""><!-- 9u 12u$(small) -->
+							<input type="text" name="query" id="query" value="" placeholder="ex. http://www.domain.com" />
+							<!-- <input type="text" name="query" id="query" value="" placeholder="Query" /> -->
+						</div>
+						<div class=""><!-- 3u$ 12u$(small) -->
+							<input type="submit" value="Search" class="fit" />
+							<!-- <input type="submit" value="Search" class="fit" /> -->
+						</div>
+					</div>
+				</form>
+			</div>
+		</section>
 
 		<!-- LOADER -->
-
-
-<!-- **** RESULTS CONTAINER BEGINS **** -->
 		<div id="main-container">
 			<div id="loader" hidden>
 				<div id="fountainTextG_1" class="fountainTextG">A</div>
@@ -47,30 +54,20 @@
 				<div id="fountainTextG_11" class="fountainTextG">.</div>
 				<div id="fountainTextG_12" class="fountainTextG">.</div>
 			</div>
-
-
-			<div id="js-results-container" hidden>
-
-	<!-- *** RESULTS SECTION *** -->
-
-			<section class="analysis-section">
-				<h2 class="results-header">Analysis Results</h2>
-				<div class="js-results">
-
-
-				</div>
-			</section>
-
-		</div> 
 		</div>
 
 
-<!-- **** RESULTS CONTAINER ENDS **** -->
-		
 
-		<footer>
-			<p>Speedysis sources content from a: <a class="footer-links" href="http://www.googleapis.com">Google API</a> and <a class="footer-links" href="https://icons8.com/icon/50191/Web-Design">Icons8</a></p>
+<!-- **** RESULTS CONTAINER ENDS **** -->
+
+		<footer id="footer" class="wrapper">
+				
+			<div class="copyright">
+				speedysis sources content from a: <a class="footer-links" href="http://www.googleapis.com">Google API</a> and <a href="https://icons8.com/icon/50191/Web-Design">Icons8</a>. Video <a href="http://coverr.co/">Coverr</a>.
+			</div>
+		
 		</footer>
+
 
 		
 
@@ -87,3 +84,52 @@
 	</body>
 
 </html>
+
+
+
+
+
+<!-- PREVIOUS HTML -->
+
+<!-- 		
+		<header>
+			<h1 class="">speedysis</h1>
+			<p class="description">website speed performance analysis</p>
+
+			<form class="cta-form">
+			<input type="text" id="address-input" class="form-control cta-form__input" placeholder="Enter ZIP Code or Address" autocomplete="off">
+			<button class="btn-primary green cta-form__btn" type="submit"><span class="hidden-md">Submit</span><span class="visible-md-inline">Get Started</span></button></form>
+
+			<form class="js-searchform">
+				<label class="searchbox" for="searchbox">Enter Domain Name</label><br>
+				<span class="searchbox">www. <input type="text" class="searchbox js-url-input" placeholder=" mywebsite" required> .com  </span>
+				<button type="submit" class="search-button js-search-button">Get Stats</button><br>
+				<p class="js-error-msg" hidden></p>
+			</form>
+		</header> 
+-->
+
+
+
+
+	<!-- *** RESULTS SECTION *** -->
+
+<!-- 	
+		<div id="js-results-container" hidden>		
+			<section class="analysis-section">
+				<h2 class="results-header">Analysis Results</h2>
+				<div class="js-results">
+
+
+				</div>
+			</section>
+
+		</div> 
+
+-->
+
+<!-- 	
+		<footer>
+			<p>Speedysis sources content from a: <a class="footer-links" href="http://www.googleapis.com">Google API</a> and <a class="footer-links" href="https://icons8.com/icon/50191/Web-Design">Icons8</a></p>
+		</footer> 
+-->
