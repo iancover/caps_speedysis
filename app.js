@@ -1,11 +1,11 @@
 
-
-
 var GOOGLE_API_URL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?callback=?';
+
+var CHART_API_URL = 'http://chart.apis.google.com/chart?';
 
 var API_KEY = 'AIzaSyD01Sfue8NJalRTGWxfP5UpjpqBoCW2LG4';
 
-var CHART_API_URL = 'http://chart.apis.google.com/chart?';
+
 
 var HTML_SCORE_CHART_TEMP = (
 	'<div class="js-score-temp">' +
