@@ -14,47 +14,128 @@
 
 	<body>
 
-		<header id="header" class="alt">
-			<div class="logo"><a href="index.html">speedysis <span> by Ian Cover</span></a></div>
+		<header id="header" class="reveal alt">
+			<div class="logo">
+				<a href="index.html">
+					"speedysis "
+					<span> by Ian Cover</span>
+				</a>
+			</div>
 		</header>
 		
-		<section id="banner" data-video="images/banner"> <!-- NOTE: add- images/banner -->
+		<!-- BANNER WITH SEARCH FORM AND VIDEO BG -->
+		<section id="banner" data-video="images/Spacious"> 
 			<div class="inner">
 				<h1>speedysis</h1>
-				<p>Analyze website content and get suggestions provided by <a href="https://developers.google.com/speed/pagespeed/">Google APIs</a> to improve performance.</p>
+					<p>Analyze website content and get suggestions measured by <a href="https://developers.google.com/speed/pagespeed/">PageSpeed Insights</a> a <a href="https://developers.google.com/">Google</a> API.</p>
 
-				<form class="js-searchform" method="post" action="#">
-					<div class="row uniform"> <!-- FOUND UNDER GRID -->
-						<div class=""><!-- 9u 12u$(small) -->
-							<input type="text" name="query" id="query" value="" placeholder="ex. http://www.domain.com" />
-							<!-- <input type="text" name="query" id="query" value="" placeholder="Query" /> -->
+				<form class="search-bar_button" method="post" action="#">
+					<div class="row uniform"> 
+						<div class="9u 12u$(small)"> 
+							<input type="text" name="query" id="query" value="" placeholder="http://www.domain.com" />
 						</div>
-						<div class=""><!-- 3u$ 12u$(small) -->
-							<input type="submit" value="Search" class="fit" />
-							<!-- <input type="submit" value="Search" class="fit" /> -->
+						<div class="3u$ 12u$(small)"> 
+							<input type="submit" value="Get Insights" class="fit" />	
 						</div>
 					</div>
 				</form>
 			</div>
 		</section>
 
-		<!-- LOADER -->
-		<div id="main-container">
-			<div id="loader" hidden>
-				<div id="fountainTextG_1" class="fountainTextG">A</div>
-				<div id="fountainTextG_2" class="fountainTextG">n</div>
-				<div id="fountainTextG_3" class="fountainTextG">a</div>
-				<div id="fountainTextG_4" class="fountainTextG">l</div>
-				<div id="fountainTextG_5" class="fountainTextG">y</div>
-				<div id="fountainTextG_6" class="fountainTextG">z</div>
-				<div id="fountainTextG_7" class="fountainTextG">i</div>
-				<div id="fountainTextG_8" class="fountainTextG">n</div>
-				<div id="fountainTextG_9" class="fountainTextG">g</div>
-				<div id="fountainTextG_10" class="fountainTextG">.</div>
-				<div id="fountainTextG_11" class="fountainTextG">.</div>
-				<div id="fountainTextG_12" class="fountainTextG">.</div>
-			</div>
-		</div>
+		<!-- WRAPPER FOR LOADER AND RESULTS CONTENT -->
+		<section id="one" class="wrapper style2">
+			<div class="inner">        
+
+					<div class="box">
+
+						<!-- COMP IMAGES -->
+						<div class="image fit">
+							<img src="images/banner_office.jpg" alt="" />
+						</div>
+
+						<!-- LANDING INFO -->		
+						<div id="landing-info"> 
+							<header class="align-center">  <!-- ****** NOTE: on submit, hide -->
+								<h2>First time using speedysis?</h2>
+							</header>
+							<hr />
+							<p class="align-center">No problem, its easy! Just enter the domain you'd like to run analytics for and speedysis will provide you with quick insights and impact scores, suggesting areas of improvement along with links to resources that may help you learn on ways to improve your site's performance.</p>	
+						</div> 
+
+						<!-- LOADER -->
+						<div id="main-container">
+							<div id="loader" hidden>
+					 			<div id="analyzing-loader_1" class="analyzing-loader">A</div>
+								<div id="analyzing-loader_2" class="analyzing-loader">n</div>
+								<div id="analyzing-loader_3" class="analyzing-loader">a</div>
+								<div id="analyzing-loader_4" class="analyzing-loader">l</div>
+								<div id="analyzing-loader_5" class="analyzing-loader">y</div>
+								<div id="analyzing-loader_6" class="analyzing-loader">z</div>
+								<div id="analyzing-loader_7" class="analyzing-loader">i</div>
+								<div id="analyzing-loader_8" class="analyzing-loader">n</div>
+								<div id="analyzing-loader_9" class="analyzing-loader">g</div>
+								<div id="analyzing-loader_10" class="analyzing-loader">.</div>
+								<div id="analyzing-loader_11" class="analyzing-loader">.</div>
+								<div id="analyzing-loader_12" class="analyzing-loader">.</div>   <!-- ***** NOTE: on submit show -->
+							</div>
+						</div>
+
+						<!-- RESULTS CONTENT-->
+						<div class="content"> 
+
+							<!-- RESULTS TABLE -->
+							<div id="table-results" hidden>
+								<h3>Results Table</h3>
+								<h4>For additional info click the link.</h4>
+
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>Rule</th>
+												<th>Suggestion</th>
+												<th>Score</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Rule 1</td>
+												<td>Name of the rule goes here...</td>
+												<td>0.00</td>
+											</tr>
+											<tr>
+												<td>Rule 2</td>
+												<td>Name of the rule goes here...</td>
+												<td>0.00</td>
+											</tr>
+											<tr>
+												<td>Rule 3</td>
+												<td>Name of the rule goes here...</td>
+												<td>0.00</td>
+											</tr>
+											<tr>
+												<td>Rule 4</td>
+												<td>Name of the rule goes here...</td>
+												<td>0.00</td>
+											</tr>
+											<tr>
+												<td>Rule 5</td>
+												<td>Name of the rule goes here...</td>
+												<td>0.00</td>
+											</tr>
+										</tbody>
+
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- END RESULTS CONTENT -->
+
+
+					</div> <!-- END BOX -->
+
+			</div> <!-- END .INNER -->
+		</section>
 
 
 
@@ -62,7 +143,7 @@
 
 		<footer id="footer" class="wrapper">		
 			<div class="copyright">
-				speedysis sources content from a: <a class="footer-links" href="http://www.googleapis.com">Google API</a> and <a class="footer-links" href="https://icons8.com/icon/50191/Web-Design">Icons8</a>. Video <a class="footer-links" href="http://coverr.co/">Coverr</a>.
+				speedysis sources content from: <a class="footer-links" href="http://www.googleapis.com">Google</a> and <a class="footer-links" href="http://coverr.co/">Coverr</a>.
 			</div>
 		</footer>
 
@@ -88,6 +169,14 @@
 </html>
 
 
+
+
+
+
+<!-- RESULT IN LIST FORMAT -->
+<!-- 		
+
+-->
 
 
 
