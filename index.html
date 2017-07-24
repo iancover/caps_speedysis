@@ -17,8 +17,8 @@
 		<header id="header" class="reveal alt">
 			<div class="logo">
 				<a href="index.html">
-					"speedysis "
-					<span> by Ian Cover</span>
+					speedysis
+					<span> by Google API</span>
 				</a>
 			</div>
 		</header>
@@ -32,10 +32,11 @@
 				<form class="search-bar_button" method="post" action="#">
 					<div class="row uniform"> 
 						<div class="9u 12u$(small)"> 
-							<input type="text" name="query" id="query" value="" placeholder="http://www.domain.com" />
+							<input type="url" name="query" id="query" value="" placeholder="Enter URL: 'http://www....'" />
 						</div>
 						<div class="3u$ 12u$(small)"> 
-							<input type="submit" value="Get Insights" class="fit" />	
+							<input type="submit" value="Get Insights" class="fit" />
+							<p class="js-error-msg" hidden></p>	
 						</div>
 					</div>
 				</form>
@@ -97,8 +98,14 @@
 												<th>Score</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr>
+
+<!-- 										<tbody>
+
+
+
+
+
+	EXAMPLE								<tr>
 												<td>Rule 1</td>
 												<td>Name of the rule goes here...</td>
 												<td>0.00</td>
@@ -108,22 +115,8 @@
 												<td>Name of the rule goes here...</td>
 												<td>0.00</td>
 											</tr>
-											<tr>
-												<td>Rule 3</td>
-												<td>Name of the rule goes here...</td>
-												<td>0.00</td>
-											</tr>
-											<tr>
-												<td>Rule 4</td>
-												<td>Name of the rule goes here...</td>
-												<td>0.00</td>
-											</tr>
-											<tr>
-												<td>Rule 5</td>
-												<td>Name of the rule goes here...</td>
-												<td>0.00</td>
-											</tr>
-										</tbody>
+
+										</tbody> -->
 
 									</table>
 								</div>

@@ -1755,7 +1755,11 @@
 		text-align: right;
 	}
 
-	input, select, textarea {
+	input {
+		color: #bbb;
+	}
+
+	select, textarea {
 		color: #555;
 	}
 
@@ -2041,6 +2045,7 @@
 		margin: 0 0 1rem 0;
 	}
 
+	input[type="url"],	
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
@@ -2053,14 +2058,15 @@
 		border-radius: 4px;
 		border: none;
 		border: solid 1px;
-		color: inherit;
-		display: block;
+/*		color: inherit;
+*/		display: block;
 		outline: 0;
 		padding: 0 1rem;
 		text-decoration: none;
 		width: 100%;
 	}
 
+		input[type="url"]:invalid,
 		input[type="text"]:invalid,
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
@@ -2101,6 +2107,7 @@
 			display: none;
 		}
 
+	input[type="url"],
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
@@ -2108,98 +2115,33 @@
 		height: 2.75rem;
 	}
 
-	textarea {
-		padding: 0.75rem 1rem;
-	}
 
-	input[type="checkbox"],
-	input[type="radio"] {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
-		display: block;
-		float: left;
-		margin-right: -2rem;
-		opacity: 0;
-		width: 1rem;
-		z-index: -1;
-	}
-
-		input[type="checkbox"] + label,
-		input[type="radio"] + label {
-			text-decoration: none;
-			cursor: pointer;
-			display: inline-block;
-			font-size: 1rem;
-			font-weight: 300;
-			padding-left: 2.4rem;
-			padding-right: 0.75rem;
-			position: relative;
-		}
-
-			input[type="checkbox"] + label:before,
-			input[type="radio"] + label:before {
-				-moz-osx-font-smoothing: grayscale;
-				-webkit-font-smoothing: antialiased;
-				font-family: FontAwesome;
-				font-style: normal;
-				font-weight: normal;
-				text-transform: none !important;
-			}
-
-			input[type="checkbox"] + label:before,
-			input[type="radio"] + label:before {
-				border-radius: 4px;
-				border: solid 1px;
-				content: '';
-				display: inline-block;
-				height: 1.65rem;
-				left: 0;
-				line-height: 1.58125rem;
-				position: absolute;
-				text-align: center;
-				top: 0;
-				width: 1.65rem;
-			}
-
-		input[type="checkbox"]:checked + label:before,
-		input[type="radio"]:checked + label:before {
-			content: '\f00c';
-		}
-
-	input[type="checkbox"] + label:before {
-		border-radius: 4px;
-	}
-
-	input[type="radio"] + label:before {
-		border-radius: 100%;
-	}
 
 	::-webkit-input-placeholder {
-		opacity: .5;
+		opacity: .25;
 	}
 
 	:-moz-placeholder {
-		opacity: .5;
+		opacity: .25;
 	}
 
 	::-moz-placeholder {
-		opacity: .5;
+		opacity: 1.0;
 	}
 
-	:-ms-input-placeholder {
-		opacity: .5;
-	}
-
+/*	:-ms-input-placeholder {
+		opacity: 1.0;
+	}*/
+/*
 	.formerize-placeholder {
-		opacity: .5;
-	}
+		opacity: 1.0;
+	}*/
 
 	label {
 		color: #555;
 	}
 
+	input[type="url"],
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
@@ -2209,6 +2151,7 @@
 		border-color: rgba(144, 144, 144, 0.25);
 	}
 
+		input[type="url"],
 		input[type="text"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
@@ -2222,29 +2165,7 @@
 		color: rgba(144, 144, 144, 0.25);
 	}
 
-	input[type="checkbox"] + label,
-	input[type="radio"] + label {
-		color: #444;
-	}
 
-		input[type="checkbox"] + label:before,
-		input[type="radio"] + label:before {
-			background: rgba(144, 144, 144, 0.075);
-			border-color: rgba(144, 144, 144, 0.25);
-		}
-
-	input[type="checkbox"]:checked + label:before,
-	input[type="radio"]:checked + label:before {
-		background-color: #5AA6ED;
-		border-color: #5AA6ED;
-		color: #ffffff;
-	}
-
-	input[type="checkbox"]:focus + label:before,
-	input[type="radio"]:focus + label:before {
-		border-color: #5AA6ED;
-		box-shadow: 0 0 0 1px #5AA6ED;
-	}
 
 	::-webkit-input-placeholder {
 		color: #bbb !important;
@@ -2758,6 +2679,7 @@
 				color: #ffffff;
 			}
 
+			.wrapper.style1 input[type="url"],
 			.wrapper.style1 input[type="text"],
 			.wrapper.style1 input[type="password"],
 			.wrapper.style1 input[type="email"],
@@ -2767,6 +2689,7 @@
 				border-color: rgba(255, 255, 255, 0.25);
 			}
 
+				.wrapper.style1 input[type="url"]:focus,
 				.wrapper.style1 input[type="text"]:focus,
 				.wrapper.style1 input[type="password"]:focus,
 				.wrapper.style1 input[type="email"]:focus,
@@ -4214,3 +4137,106 @@
 			}
 */
 		}
+
+
+
+
+
+
+
+
+/*THESE GO UNDER .select-wrapper line 2225 aprox*/
+
+/*			input[type="checkbox"] + label,
+	input[type="radio"] + label {
+		color: #444;
+	}
+
+		input[type="checkbox"] + label:before,
+		input[type="radio"] + label:before {
+			background: rgba(144, 144, 144, 0.075);
+			border-color: rgba(144, 144, 144, 0.25);
+		}
+
+	input[type="checkbox"]:checked + label:before,
+	input[type="radio"]:checked + label:before {
+		background-color: #5AA6ED;
+		border-color: #5AA6ED;
+		color: #ffffff;
+	}
+
+	input[type="checkbox"]:focus + label:before,
+	input[type="radio"]:focus + label:before {
+		border-color: #5AA6ED;
+		box-shadow: 0 0 0 1px #5AA6ED;
+	}*/
+
+
+/*
+		textarea {
+		padding: 0.75rem 1rem;
+	}
+
+	input[type="checkbox"],
+	input[type="radio"] {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		display: block;
+		float: left;
+		margin-right: -2rem;
+		opacity: 0;
+		width: 1rem;
+		z-index: -1;
+	}
+
+		input[type="checkbox"] + label,
+		input[type="radio"] + label {
+			text-decoration: none;
+			cursor: pointer;
+			display: inline-block;
+			font-size: 1rem;
+			font-weight: 300;
+			padding-left: 2.4rem;
+			padding-right: 0.75rem;
+			position: relative;
+		}
+
+			input[type="checkbox"] + label:before,
+			input[type="radio"] + label:before {
+				-moz-osx-font-smoothing: grayscale;
+				-webkit-font-smoothing: antialiased;
+				font-family: FontAwesome;
+				font-style: normal;
+				font-weight: normal;
+				text-transform: none !important;
+			}
+
+			input[type="checkbox"] + label:before,
+			input[type="radio"] + label:before {
+				border-radius: 4px;
+				border: solid 1px;
+				content: '';
+				display: inline-block;
+				height: 1.65rem;
+				left: 0;
+				line-height: 1.58125rem;
+				position: absolute;
+				text-align: center;
+				top: 0;
+				width: 1.65rem;
+			}
+
+		input[type="checkbox"]:checked + label:before,
+		input[type="radio"]:checked + label:before {
+			content: '\f00c';
+		}
+
+	input[type="checkbox"] + label:before {
+		border-radius: 4px;
+	}
+
+	input[type="radio"] + label:before {
+		border-radius: 100%;
+	}*/

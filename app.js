@@ -1,5 +1,5 @@
 
-var GOOGLE_API_URL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?callback=?';
+var GOOGLE_API_URL = 'http://www.googleapis.com/pagespeedonline/v2/runPagespeed?callback=?';
 
 var CHART_API_URL = 'http://chart.apis.google.com/chart?';
 
@@ -14,10 +14,8 @@ var HTML_SCORE_CHART_TEMP = (
 );
 
 var HTML_SUGGESTIONS_TEMP = (
-	'<div class="js-suggestions-temp">' +
-		'<dl class="js-pgspeed-suggestions">' +
-		'</dl>' +
-	'</div>'
+		'<tbody="js-pgspeed-suggestions">' +
+		'</tbody>' 
 );
 
 
@@ -79,8 +77,11 @@ function renderSuggestions(results) {
 		console.log(suggestResults[i]);
 		// var summary = ((suggestResults[i].summary && suggestResults[i].summary.format) ? '<dd>' + suggestResults[i].summary.format + '</dd><br>' : '');
 		var resultListItem = (
-			'<dt>' + suggestResults[i].name + '</dt><br>' +
-			'<dd>Impact Score: <span class="js-impact-score">' + impactScoreFixed + '</span></dd><br>' 
+			'<tr>' +
+				'<td> Rule </td>' +
+				'<td>' + suggestResults[i].name + '</td>' +
+				'<td>Impact Score: <span class="js-impact-score">' + impactScoreFixed + '</span></td><br>'  +
+			'</tr>'
 			// + summary
 			);
 
@@ -120,31 +121,37 @@ function displayApiData(data) {
 	console.log(data);
 
 	$(document).ready(function() {
-	$('#fountainTextG').hide();
+	$('#loader').hide();
 	console.log('loader hide/show working');
 
-	$('#js-results-container').removeAttr('hidden');
+	$('#table-results').removeAttr('hidden');
  	console.log('results container displaying');
-});
+	});
 	if (data.error) {
-    	var errorDisplay = data.error.errors.message;
-    	$('form').find('.js-error-msg').show().val(errorDisplay);
-    } else {
+    		var errorDisplay = data.error.message;
+    		console.log(data.error);
+    		console.log(data.error.message);
+    		console.log(errorDisplay);
+    		$('form').find('.js-error-msg').show().val(errorDisplay);
+    	} else {
 		var charTemp = renderChart(data);
 		var listTemplate = renderSuggestions(data);
 
-		$('.js-results').html(charTemp);
-    	$('.js-results').append(listTemplate);
+		console.log(listTemplate);
+	$('.content').prepend(charTemp);
+    	$('table').append(listTemplate);
     }
 }
 
 function formSubmit() {
-	$('.js-searchform').submit(function(event) {
+	$('.search-bar_button').submit(function(event) {
 		event.preventDefault();
 
-		$('#fountainTextG').show();
-		var inputURL = $(document).find('.js-url-input');
-		var targetURL = 'http://www.' + inputURL.val() + '.com';
+		$('#loader').show();
+		$('#landing-info').hide();
+
+		var inputURL = $(document).find('#query');
+		var targetURL = 'http://' + inputURL.val();    //  or this-->.  'http://www.' + inputURL.val() + '.com';
 		inputURL.val("");
 
 		console.log('watchSubmit running');
