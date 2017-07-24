@@ -151,7 +151,7 @@ function formSubmit() {
 		$('#landing-info').hide();
 
 		var inputURL = $(document).find('#query');
-		var targetURL = 'http://' + inputURL.val();    //  or this-->.  'http://www.' + inputURL.val() + '.com';
+		var targetURL = '//' + inputURL.val();    //  or this-->.  'http://www.' + inputURL.val() + '.com';
 		inputURL.val("");
 
 		console.log('watchSubmit running');
