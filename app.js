@@ -39,7 +39,7 @@ function getDataApi(searchURL, callback) {
 	  	key: API_KEY,
 	};
 
-	console.log('getDataApi running');
+	// console.log('getDataApi running');
 	$.getJSON(GOOGLE_API_URL, query, callback);
 }
 
@@ -71,68 +71,80 @@ function renderSuggestions(results) {
 		var resultListItem = (
 			'<tr>' +
 				'<td> Rule </td>' +
-				'<td><a href="" target="_blank">' + suggestResults[i].name + '</td>' +
+				'<td><a class="suggested-link" target="_blank">' + suggestResults[i].name + '</td>' +
 				'<td>Impact Score: <span class="js-impact-score">' + impactScoreFixed + '</span></td><br>'  +
 			'</tr>'
 			);
 
-		if (suggestResults[i] == 'AvoidLandingPageRedirects' ) {
-			var link = 'https://developers.google.com/speed/docs/insights/AvoidRedirects';
-			resultListItem.find('a').addAttr('.href', link);
+		console.log(suggestResults);
+
+		if (ruleResults == 'AvoidLandingPageRedirects') {
+			console.log('AvoidLandingPageRedirects');
+			var linkA = 'https://developers.google.com/speed/docs/insights/AvoidRedirects';
+			resultListItem.find('.suggested-link').addAttr('href', linkA);
 			// path: suggestResults.AvoidLandingPageRedirects.summary.args.0.value
 		}
 
-		if (suggestResults[i] == 'EnableGzipCompression') {
-			var link = 'https://developers.google.com/speed/docs/insights/EnableCompression';
-			resultListItem.find('a').addAttr('.href', link);
+		if (ruleResults == 'EnableGzipCompression') {
+			console.log('EnableGzipCompression');
+			var linkB = 'https://developers.google.com/speed/docs/insights/EnableCompression';
+			resultListItem.find('.suggested-link').addAttr('href', linkB);
 			// path: suggestResults.EnableGzipCompression.summary.args.0.value
 		}
 
-		if (suggestResults[i] == 'LeverageBrowserCaching') {
-			var link = 'https://developers.google.com/speed/docs/insights/LeverageBrowserCaching';
-			resultListItem.find('a').addAttr('.href', link);
+		if (ruleResults == 'LeverageBrowserCaching') {
+			console.log('LeverageBrowserCaching');
+			var linkC = 'https://developers.google.com/speed/docs/insights/LeverageBrowserCaching';
+			resultListItem.find('.suggested-link').addAttr('href', linkC);
 			// path: suggestResults.LeverageBrowserCaching.urlBlocks.0.header.args.0.value
 		}
 
-		if (suggestResults[i] == 'MainResourceServerResponseTime') {
-			var link = 'https://developers.google.com/speed/docs/insights/Server';
-			resultListItem.find('a').addAttr('.href', link);
+		if (ruleResults == 'MainResourceServerResponseTime') {
+			console.log('MainResourceServerResponseTime');
+			var linkD = 'https://developers.google.com/speed/docs/insights/Server';
+			resultListItem.find('.suggested-link').addAttr('href', linkD);
 			// path: suggestResults.MainResourceServerResponseTime.urlBlocks.0.header.args.1.value
 		}
 
-		if (suggestResults[i] == 'MinifyCss') {
-			var link = 'https://developers.google.com/speed/docs/insights/MinifyResources';
-			resultListItem.find('a').addAttr('.href', link);
+		if (ruleResults == 'MinifyCss') {
+			console.log('MinifyCss');
+			var linkE = 'https://developers.google.com/speed/docs/insights/MinifyResources';
+			resultListItem.find('.suggested-link').addAttr('href', linkE);
 			// path: suggestResults.MinifyCss.summary.args.0.value
 		}
 
-		if (suggestResults[i] == 'MinifyHTML') {
-			var link = 'https://developers.google.com/speed/docs/insights/MinifyResources';
-			resultListItem.find('a').addAttr('.href', link);
+		if (ruleResults == 'MinifyHTML') {
+			console.log('MinifyHTML');
+			var linkF = 'https://developers.google.com/speed/docs/insights/MinifyResources';
+			resultListItem.find('.suggested-link').addAttr('href', linkF);
 			// path: suggestResults.MinifyHTML.urlBlocks.0.header.args.0.value
 		}
 
-		if (suggestResults[i] == 'MinifyJavaScript') {
-			var link = 'https://developers.google.com/speed/docs/insights/MinifyResources';
-			resultListItem.find('a').addAttr('.href', link);
+		if (ruleResults == 'MinifyJavaScript') {
+			console.log('MinifyJavaScript');
+			var linkG = 'https://developers.google.com/speed/docs/insights/MinifyResources';
+			resultListItem.find('.suggested-link').addAttr('href', linkG);
 			// path: suggestResults.MinifyJavaScript.summary.args.0.value 
 		}
 
-		if (suggestResults[i] == 'MinimizeRenderBlockingResources') {
-			var link = 'https://developers.google.com/speed/docs/insights/BlockingJS';
-			resultListItem.find('a').addAttr('.href', link);
+		if (ruleResults == 'MinimizeRenderBlockingResources') {
+			console.log('MinimizeRenderBlockingResources');
+			var linkH = 'https://developers.google.com/speed/docs/insights/BlockingJS';
+			resultListItem.find('.suggested-link').addAttr('href', linkH);
 			// path: suggestResults.MinimizeRenderBlockingResources.urlBlocks.1.args.0.value
 		}
 
-		if (suggestResults[i] == 'OptimizeImages') {
-			var link = 'https://developers.google.com/speed/docs/insights/OptimizeImages';
-			resultListItem.find('a').addAttr('.href', link);
+		if (ruleResults == 'suggestResults.OptimizeImages') {
+			console.log('OptimizeImages');
+			var linkI = 'https://developers.google.com/speed/docs/insights/OptimizeImages';
+			resultListItem.find('.suggested-link').addAttr('href', linkI);
 			// path: suggestResults.OptimizeImages.urlBlocks.0.header.args.0.value
 		}
 
-		if (suggestResults[i] == 'PrioritizeVisibleContent') {
-			var link = 'https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent';
-			resultListItem.find('a').addAttr('.href', link);
+		if (ruleResults == 'PrioritizeVisibleContent') {
+			console.log('PrioritizeVisibleContent');
+			var linkJ= 'https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent';
+			resultListItem.find('.suggested-link').addAttr('href', linkJ);
 			// path: suggestResults.PrioritizeVisibleContent.urlBlocks.0.header.args.0.value
 		}
 
