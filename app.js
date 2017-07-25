@@ -125,7 +125,7 @@ function formSubmit() {
 	$('.search-bar_button').submit(function(event) {
 		event.preventDefault();
 
-		$("body").scrollBottom();
+		$("body").scrollTop(2000);
 		$('#loader').show();
 		$('.content').html('');
 		$('#landing-info').hide();
