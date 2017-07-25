@@ -1,5 +1,5 @@
 
-var GOOGLE_API_URL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?callback=?';
+var GOOGLE_API_URL = 'http://www.googleapis.com/pagespeedonline/v2/runPagespeed?callback=?';
 
 var CHART_API_URL = 'http://chart.apis.google.com/chart?';
 
