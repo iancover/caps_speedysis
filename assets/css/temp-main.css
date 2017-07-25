@@ -19,16 +19,12 @@
 		vertical-align: baseline;
 	}
 
-	article, aside, details, figcaption, figure, footer, header, hgroup, section {
+	footer, header, hgroup, section {
 		display: block;
 	}
 
 	body {
 		line-height: 1;
-	}
-
-	ol, ul {
-		list-style: none;
 	}
 
 

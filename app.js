@@ -71,10 +71,71 @@ function renderSuggestions(results) {
 		var resultListItem = (
 			'<tr>' +
 				'<td> Rule </td>' +
-				'<td>' + suggestResults[i].name + '</td>' +
+				'<td><a href="">' + suggestResults[i].name + '</td>' +
 				'<td>Impact Score: <span class="js-impact-score">' + impactScoreFixed + '</span></td><br>'  +
 			'</tr>'
 			);
+
+		if (suggestResults[i] == 'AvoidLandingPageRedirects' ) {
+			var link = 'https://developers.google.com/speed/docs/insights/AvoidRedirects';
+			resultListItem.find('a').addAttr('.href', link);
+			// path: suggestResults.AvoidLandingPageRedirects.summary.args.0.value
+		}
+
+		if (suggestResults[i] == 'EnableGzipCompression') {
+			var link = 'https://developers.google.com/speed/docs/insights/EnableCompression';
+			resultListItem.find('a').addAttr('.href', link);
+			// path: suggestResults.EnableGzipCompression.summary.args.0.value
+		}
+
+		if (suggestResults[i] == 'LeverageBrowserCaching') {
+			var link = 'https://developers.google.com/speed/docs/insights/LeverageBrowserCaching';
+			resultListItem.find('a').addAttr('.href', link);
+			// path: suggestResults.LeverageBrowserCaching.urlBlocks.0.header.args.0.value
+		}
+
+		if (suggestResults[i] == 'MainResourceServerResponseTime') {
+			var link = 'https://developers.google.com/speed/docs/insights/Server';
+			resultListItem.find('a').addAttr('.href', link);
+			// path: suggestResults.MainResourceServerResponseTime.urlBlocks.0.header.args.1.value
+		}
+
+		if (suggestResults[i] == 'MinifyCss') {
+			var link = 'https://developers.google.com/speed/docs/insights/MinifyResources';
+			resultListItem.find('a').addAttr('.href', link);
+			// path: suggestResults.MinifyCss.summary.args.0.value
+		}
+
+		if (suggestResults[i] == 'MinifyHTML') {
+			var link = 'https://developers.google.com/speed/docs/insights/MinifyResources';
+			resultListItem.find('a').addAttr('.href', link);
+			// path: suggestResults.MinifyHTML.urlBlocks.0.header.args.0.value
+		}
+
+		if (suggestResults[i] == 'MinifyJavaScript') {
+			var link = 'https://developers.google.com/speed/docs/insights/MinifyResources';
+			resultListItem.find('a').addAttr('.href', link);
+			// path: suggestResults.MinifyJavaScript.summary.args.0.value 
+		}
+
+		if (suggestResults[i] == 'MinimizeRenderBlockingResources') {
+			var link = 'https://developers.google.com/speed/docs/insights/BlockingJS';
+			resultListItem.find('a').addAttr('.href', link);
+			// path: suggestResults.MinimizeRenderBlockingResources.urlBlocks.1.args.0.value
+		}
+
+		if (suggestResults[i] == 'OptimizeImages') {
+			var link = 'https://developers.google.com/speed/docs/insights/OptimizeImages';
+			resultListItem.find('a').addAttr('.href', link);
+			// path: suggestResults.OptimizeImages.urlBlocks.0.header.args.0.value
+		}
+
+		if (suggestResults[i] == 'PrioritizeVisibleContent') {
+			var link = 'https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent';
+			resultListItem.find('a').addAttr('.href', link);
+			// path: suggestResults.PrioritizeVisibleContent.urlBlocks.0.header.args.0.value
+		}
+
 		listTempInsert.append(resultListItem);
 	}
   	// console.log(listTemplate);
@@ -138,11 +199,6 @@ function formSubmit() {
 }
 
 $(formSubmit);
-
-
-
-
-
 
 
 
