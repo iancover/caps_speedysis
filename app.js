@@ -124,6 +124,8 @@ function displayApiData(data) {
 function formSubmit() {
 	$('.search-bar_button').submit(function(event) {
 		event.preventDefault();
+
+		$("body").scrollBottom();
 		$('#loader').show();
 		$('.content').html('');
 		$('#landing-info').hide();
