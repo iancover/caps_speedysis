@@ -128,7 +128,7 @@ function formSubmit() {
 		$('.content').html('');
 		$('#landing-info').hide();
 		var inputURL = $(document).find('#query');
-		var targetURL = inputURL.val();    //  or this-->.  'http://www.' + inputURL.val() + '.com';
+		var targetURL = 'http://www.' + inputURL.val();
 		inputURL.val("");
 		// console.log('watchSubmit running'); 
 		getDataApi(targetURL, displayApiData);
