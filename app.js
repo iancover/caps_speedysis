@@ -71,7 +71,7 @@ function renderSuggestions(results) {
 		var resultListItem = (
 			'<tr>' +
 				'<td> Rule </td>' +
-				'<td><a href="">' + suggestResults[i].name + '</td>' +
+				'<td><a href="" target="_blank">' + suggestResults[i].name + '</td>' +
 				'<td>Impact Score: <span class="js-impact-score">' + impactScoreFixed + '</span></td><br>'  +
 			'</tr>'
 			);
