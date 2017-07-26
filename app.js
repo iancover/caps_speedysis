@@ -38,57 +38,89 @@ function getDataApi(searchURL, callback) {
 	  	url: searchURL,
 	  	key: API_KEY,
 	};
-
 	// console.log('getDataApi running');
 	$.getJSON(GOOGLE_API_URL, query, callback);
 }
 
 function renderSuggestions(results) {
   	// console.log('renderSuggestions running')
-	var suggestResults = [];
+	var suggestResult = [];
 	var ruleResults = results.formattedResults.ruleResults;
 	for (var i in ruleResults) {
 		var eachResult = ruleResults[i];
-		console.log(eachResult);
-
-		// Need to iterate the links to go with each item...
-
 		if (eachResult.ruleImpact < 3.0) continue;
-		suggestResults.push({
-			name: eachResult.localizedRuleName,
-			impact: eachResult.ruleImpact,
-		});	
-		}
+			suggestResult.push({
+				name: eachResult.localizedRuleName,
+				impact: eachResult.ruleImpact,
+				href: getLink(i, ruleResults)
+			});	
 	}
-
-	// console.log(suggestResults);
-	suggestResults.sort(function(a,b) {
+	// console.log(suggestResult);
+	suggestResult.sort(function(a,b) {
 	  	return b.impact - a.impact;
 	});
 	var listTemplate = $(HTML_SUGGESTIONS_TEMP);
 	var listTempInsert = listTemplate.find('.js-pgspeed-suggestions');
 	// console.log(listTemplate);
-	for (var i = 0; i < suggestResults.length; ++i) {
-		var impactScoreLong = suggestResults[i].impact;
-		var impactScoreFixed = impactScoreLong.toFixed(2); 
-		var link = 
-		// console.log(suggestResults[i]);
-		// if summary option...goes here	
+	for (var i = 0; i < suggestResult.length; ++i) {
+		var impactScoreLong = suggestResult[i].impact;
+		var impactScoreFixed = impactScoreLong.toFixed(2); 	
 		var resultListItem = (
 			'<tr>' +
 				'<td> Rule </td>' +
-				'<td><a href="' + varX + '" target="_blank">' + suggestResults[i].name + '</td>' +
+				'<td><a href="' + suggestResult[i].href + '" target="_blank">' + suggestResult[i].name + '</td>' +
 				'<td>Impact Score: <span class="js-impact-score">' + impactScoreFixed + '</span></td><br>'  +
 			'</tr>'
 			);
 
-		console.log(suggestResults);
-
-
 		listTempInsert.append(resultListItem);
 	}
-  	// console.log(listTemplate);
   	return listTemplate;
+}
+
+function getLink(ruleName, ruleNameResult) {
+	var linkA = 'https://developers.google.com/speed/docs/insights/AvoidRedirects';
+	var linkB = 'https://developers.google.com/speed/docs/insights/EnableCompression';
+	var linkC = 'https://developers.google.com/speed/docs/insights/LeverageBrowserCaching';
+	var linkD = 'https://developers.google.com/speed/docs/insights/Server';
+	var linkE = 'https://developers.google.com/speed/docs/insights/MinifyResources';
+	var linkF = 'https://developers.google.com/speed/docs/insights/MinifyResources';
+	var linkG = 'https://developers.google.com/speed/docs/insights/MinifyResources';
+	var linkH = 'https://developers.google.com/speed/docs/insights/BlockingJS';
+	var linkI = 'https://developers.google.com/speed/docs/insights/OptimizeImages';
+	var linkJ= 'https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent';
+		
+	switch(ruleName) {
+		case 'AvoidLandingPageRedirects':
+		return linkA;
+
+		case 'EnableGzipCompression':
+		return linkB;
+
+		case 'LeverageBrowserCaching':
+		return linkC;
+
+		case 'MainResourceServerResponseTime':
+		return linkD;
+
+		case 'MinifyCss':
+		return linkE;
+
+		case 'MinifyHTML':
+		return linkF;
+
+		case 'MinifyJavaScript':
+		return linkG;
+
+		case 'MinimizeRenderBlockingResources':
+		return linkH;
+
+		case 'OptimizeImages':
+		return linkI;
+
+		case 'PrioritizeVisibleContent':
+		return linkJ;
+	}
 }
 
 function renderChart(results) {
@@ -109,7 +141,6 @@ function renderChart(results) {
   	// console.log(charTemplate);
   	return charTemplate;
 }
-
 
 function displayApiData(data) {
 	// console.log('displayApiData running');
@@ -134,7 +165,6 @@ function displayApiData(data) {
 function formSubmit() {
 	$('.search-bar_button').submit(function(event) {
 		event.preventDefault();
-
 		$("body").scrollTop(2000);
 		$('#loader').show();
 		$('.content').html('');
@@ -147,58 +177,11 @@ function formSubmit() {
 	});
 }
 
+$(document).ready(function() {
+	$(this).scrollTop(0);
+});
+
 $(formSubmit);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// *** Additional for Summary Option
-
-	// Line 54 aprox
-
-	// if (eachResult.summary) { 
-	// 	suggestResults.push({
-	// 		name: eachResult.localizedRuleName,
-	// 		impact: eachResult.ruleImpact,
-	// 		summary: parseSummary(eachResult.summary)
-	// 	});	
-	// } else {
-
-// var summary = ((suggestResults[i].summary && suggestResults[i].summary.format) ? '<dd>' + suggestResults[i].summary.format + '</dd><br>' : '');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
