@@ -170,10 +170,10 @@ function formSubmit() {
 		$('.content').html('');
 		$('#landing-info').hide();
 		var inputURL = $(document).find('#query');
-		var targetURL = 'http://www.' + inputURL.val();
+		var passURL = inputURL.val();
 		inputURL.val("");
 		// console.log('watchSubmit running'); 
-		getDataApi(targetURL, displayApiData);
+		getDataApi(passURL, displayApiData);
 	});
 }
 
