@@ -3,10 +3,6 @@
 @import url("https://fonts.googleapis.com/css?family=Taviraj:300,400,700,300i,400i,700i");
 
 
-.js-impact-score {
-	color: #9A2617;
-}
-
 /* Reset */	
 
 	html, body, div, span, h1, h2, h3, p, a, code, img, small, form, label, table, tbody, thead, tfoot, tr, th, td, header, footer, video {
@@ -33,6 +29,10 @@
 
 	body {
 		-webkit-text-size-adjust: none;
+	}
+
+	.js-impact-score {
+		color: #9A2617;
 	}
 
 /* Box Model */
@@ -1589,27 +1589,6 @@
 	.formerize-placeholder {
 		color: #bbb !important;
 	}
-
-/* Icon */
-
-	.icon {
-		text-decoration: none;
-		border-bottom: none;
-		position: relative;
-	}
-
-		.icon:before {
-			-moz-osx-font-smoothing: grayscale;
-			-webkit-font-smoothing: antialiased;
-			font-family: FontAwesome;
-			font-style: normal;
-			font-weight: normal;
-			text-transform: none !important;
-		}
-
-		.icon > .label {
-			display: none;
-		}
 
 /* Image */
 
