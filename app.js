@@ -130,7 +130,7 @@ function renderChart(results) {
   	var speedScore = results.ruleGroups.SPEED.score;
   	var chartQuery = [
 	    'chtt=Page+Speed+score:+' + speedScore,
-	    'chs=200x120',
+	    'chs=220x120',
 	    'cht=gom',
 	    'chd=t:' + speedScore,
 	    'chxt=x,y',
@@ -153,6 +153,7 @@ function displayApiData(data) {
 	if (data.error) {
     		var errorDisplay = data.error.message;
     		$('form').find('.js-error-msg').show().val(errorDisplay);
+    		console.log('error not displaying');
     	} else {
 		var charTemp = renderChart(data);
 		var listTemplate = renderSuggestions(data);
@@ -169,8 +170,9 @@ function formSubmit() {
 		$('#loader').show();
 		$('.content').html('');
 		$('#landing-info').hide();
+		$('.js-error-msg').hide();
 		var inputURL = $(document).find('#query');
-		var passURL = inputURL.val();
+		var passURL = "http://" + inputURL.val();
 		inputURL.val("");
 		// console.log('watchSubmit running'); 
 		getDataApi(passURL, displayApiData);

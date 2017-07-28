@@ -29,12 +29,14 @@
 				<form class="search-bar_button" method="post" action="#">
 					<div class="row uniform"> 
 						<div class="9u 12u$(small)"> 
-							<input type="url" name="query" id="query"  placeholder="http://www.example.com" required>
-							<!-- pattern="^(https?://)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" -->
+							<input type="text" name="query" id="query"  placeholder="www.example.com" required>
+							<!-- pattern="https://+" -->
 						</div>
 						<div class="3u$ 12u$(small)"> 
-							<input type="submit" value="Get Insights" class="fit" />
-							<p class="js-error-msg" hidden></p>	
+							<input type="submit" value="Get Insights" class="fit" />	
+						</div>
+						<div class="9u 12u$(small)">
+							<p class="js-error-msg" style="" hidden>ERROR! PLEASE ENTER A VALID WEBSITE.</p>
 						</div>
 					</div>
 				</form>
@@ -51,6 +53,8 @@
 						<div class="image fit">
 							<img src="images/banner_office.jpg" alt="" />
 						</div>
+
+
 
 						<!-- LANDING INFO -->		
 						<div id="landing-info"> 
@@ -82,6 +86,9 @@
 						<!-- RESULTS CONTENT-->
 						<div class="content"> 
 
+						<div class="js-error-msg" hidden>
+							<p>ERROR! PLEASE ENTER A VALID WEBSITE.</p>
+						</div>
 
 						</div>
 						<!-- END RESULTS CONTENT -->
